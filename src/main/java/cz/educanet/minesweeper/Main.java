@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         Minesweeper logic = new Minesweeper(20, 28);
-        cells = new JButton[28][20];
+        cells = new JButton[logic.getRows()][logic.getColumns()];
 
         JFrame frame = new JFrame("Minesweeper");
         frame.setSize(800, 600);
@@ -21,19 +21,19 @@ public class Main {
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(logic.getRows(), logic.getColumns(), 1, 1));
-        for (int i = 0; i < logic.getColumns(); i++) {
-            for (int j = 0; j < logic.getRows(); j++) {
+        for (int i = 0; i < logic.getRows(); i++) {
+            for (int j = 0; j < logic.getColumns(); j++) {
                 Cell btn = new Cell();
                 cells[i][j] = btn;
                 panel.add(btn);
                 int finalI = i;
                 int finalJ = j;
                 btn.setMouseClick(() -> {
-                    logic.reveal(finalI, finalJ);
+                    logic.reveal(finalJ, finalI);
                     redraw(logic);
                 });
                 btn.setContextClick(() -> {
-                    logic.toggleFieldState(finalI, finalJ);
+                    logic.toggleFieldState(finalJ, finalI);
                     redraw(logic);
                 });
             }
