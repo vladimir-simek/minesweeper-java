@@ -5,7 +5,6 @@ public class Minesweeper {
     private int rowsCount;
     private int columnsCount;
 
-
     public Minesweeper(int rows, int columns) {
         this.rowsCount = rows;
         this.columnsCount = columns;
@@ -16,6 +15,7 @@ public class Minesweeper {
      * 1 - Visible
      * 2 - Flag
      * 3 - Question mark
+     *
      * @param x X
      * @param y Y
      * @return field type
@@ -39,6 +39,7 @@ public class Minesweeper {
 
     /**
      * Reveals the field and all fields adjacent (with 0 adjacent bombs) and all fields adjacent to the adjacent fields... ect.
+     *
      * @param x X
      * @param y Y
      */
@@ -47,6 +48,7 @@ public class Minesweeper {
 
     /**
      * Returns the amount of adjacent bombs
+     *
      * @param x X
      * @param y Y
      * @return number of adjacent bombs
@@ -57,6 +59,7 @@ public class Minesweeper {
 
     /**
      * Checks if there is a bomb on the current position
+     *
      * @param x X
      * @param y Y
      * @return true if bomb on position
@@ -67,6 +70,7 @@ public class Minesweeper {
 
     /**
      * Returns the amount of bombs on the field
+     *
      * @return bomb count
      */
     public int getBombCount() {
@@ -75,6 +79,7 @@ public class Minesweeper {
 
     /**
      * total bombs - number of flags
+     *
      * @return remaining bomb count
      */
     public int getRemainingBombCount() {
@@ -83,6 +88,7 @@ public class Minesweeper {
 
     /**
      * returns true if every flag is on a bomb, else false
+     *
      * @return if player won
      */
     public boolean didWin() {
@@ -91,6 +97,7 @@ public class Minesweeper {
 
     /**
      * returns true if player revealed a bomb, else false
+     *
      * @return if player lost
      */
     public boolean didLoose() {
