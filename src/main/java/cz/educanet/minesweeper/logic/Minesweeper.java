@@ -2,8 +2,11 @@ package cz.educanet.minesweeper.logic;
 
 public class Minesweeper {
 
-    private int rowsCount;
-    private int columnsCount;
+    private final int rowsCount;
+    private final int columnsCount;
+
+    private int x;
+    private int y;
 
     public Minesweeper(int rows, int columns) {
         this.rowsCount = rows;
@@ -21,7 +24,9 @@ public class Minesweeper {
      * @return field type
      */
     public int getField(int x, int y) {
-        return 0;
+        if (this.x == x && this.y == y) {
+            return 1;
+        } else return 0;
     }
 
     /**
@@ -35,6 +40,7 @@ public class Minesweeper {
      * @param y Y
      */
     public void toggleFieldState(int x, int y) {
+
     }
 
     /**
@@ -44,6 +50,8 @@ public class Minesweeper {
      * @param y Y
      */
     public void reveal(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     /**
