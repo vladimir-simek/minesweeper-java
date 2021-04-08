@@ -4,13 +4,17 @@ public class Minesweeper {
 
     private final int rowsCount;
     private final int columnsCount;
+    private Cells cells;
+    private final int bombCount;
 
     private int x;
     private int y;
 
-    public Minesweeper(int rows, int columns) {
+    public Minesweeper(int rows, int columns, int bombCount) {
         this.rowsCount = rows;
         this.columnsCount = columns;
+        this.bombCount = bombCount;
+        this.cells = new Cells(this.bombCount,this.columnsCount, this.rowsCount);
     }
 
     /**
@@ -24,9 +28,7 @@ public class Minesweeper {
      * @return field type
      */
     public int getField(int x, int y) {
-        if (this.x == x && this.y == y) {
-            return 1;
-        } else return 0;
+        return this.cells.getCellState(x,y);
     }
 
     /**
@@ -40,7 +42,11 @@ public class Minesweeper {
      * @param y Y
      */
     public void toggleFieldState(int x, int y) {
+        int cellState = cells.getCellState(x,y);
 
+        if (cellState == 0) {
+            cells.setCellState(x,y,2);
+        }
     }
 
     /**
@@ -52,6 +58,10 @@ public class Minesweeper {
     public void reveal(int x, int y) {
         this.x = x;
         this.y = y;
+        int cellState = cells.getCellState(x,y);
+        if (cellState == 0) {
+            cells.setCellState(x,y,1);
+        }
     }
 
     /**
