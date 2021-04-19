@@ -83,7 +83,7 @@ public class Minesweeper {
      * @return true if bomb on position
      */
     public boolean isBombOnPosition(int x, int y) {
-        return false;
+        return cells.getIsMine(x, y);
     }
 
     /**
