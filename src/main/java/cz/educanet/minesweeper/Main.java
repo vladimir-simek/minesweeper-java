@@ -11,7 +11,7 @@ public class Main {
     private static JButton[][] cells;
 
     public static void main(String[] args) {
-        Minesweeper logic = new Minesweeper(20, 28,15);
+        Minesweeper logic = new Minesweeper(20, 28,20);
         cells = new JButton[logic.getRows()][logic.getColumns()];
 
         JFrame frame = new JFrame("Minesweeper");

@@ -21,6 +21,24 @@ public class Cells {
                 this.cells[i][j] = new Cell();
             }
         }
+
+        for (int i = 0; i < amountOfMines; i++) {
+            generateMines(amountOfRows, amountOfColumns);
+        }
+
+    }
+
+    public void generateMines(int amountOfRows, int amountOfColumns) {
+            int random1 = (int) Math.floor(Math.random()*amountOfRows);
+            int random2 = (int) Math.floor(Math.random()*amountOfColumns);
+            System.out.println(random1);
+            System.out.println(random2);
+            if (!cells[random2][random1].getIsMine()) {
+                cells[random2][random1].setIsMine(true);
+                return;
+            }
+            generateMines(amountOfRows, amountOfColumns);
+
     }
 
     public int getCellState(int i, int j) {
@@ -38,4 +56,5 @@ public class Cells {
     public void setIsMine(int i, int j) {
         this.cells[i][j].setIsMine(true);
     }
+
 }

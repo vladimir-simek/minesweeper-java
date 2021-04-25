@@ -6,6 +6,7 @@ public class Minesweeper {
     private final int columnsCount;
     private Cells cells;
     private final int bombCount;
+    private boolean loser = false;
 
     private int x;
     private int y;
@@ -44,8 +45,16 @@ public class Minesweeper {
     public void toggleFieldState(int x, int y) {
         int cellState = cells.getCellState(x,y);
 
+        /*if (cellState == 0) {
+            cells.setCellState(x,y,2);
+        }*/
+
         if (cellState == 0) {
             cells.setCellState(x,y,2);
+        } else if (cellState == 2) {
+            cells.setCellState(x,y,3);
+        } else if (cellState == 3) {
+            cells.setCellState(x,y,0);
         }
     }
 
@@ -58,6 +67,7 @@ public class Minesweeper {
     public void reveal(int x, int y) {
         this.x = x;
         this.y = y;
+        if (isBombOnPosition(x,y)) loser = true;
         int cellState = cells.getCellState(x,y);
         if (cellState == 0) {
             cells.setCellState(x,y,1);
@@ -92,7 +102,7 @@ public class Minesweeper {
      * @return bomb count
      */
     public int getBombCount() {
-        return 0;
+        return this.bombCount;
     }
 
     /**
@@ -119,7 +129,7 @@ public class Minesweeper {
      * @return if player lost
      */
     public boolean didLoose() {
-        return false;
+        return this.loser;
     }
 
     public int getRows() {
