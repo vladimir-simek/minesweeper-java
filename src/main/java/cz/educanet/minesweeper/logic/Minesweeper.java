@@ -45,10 +45,6 @@ public class Minesweeper {
     public void toggleFieldState(int x, int y) {
         int cellState = cells.getCellState(x,y);
 
-        /*if (cellState == 0) {
-            cells.setCellState(x,y,2);
-        }*/
-
         if (cellState == 0) {
             cells.setCellState(x,y,2);
         } else if (cellState == 2) {
