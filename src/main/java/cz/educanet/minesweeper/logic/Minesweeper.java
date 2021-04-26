@@ -15,7 +15,7 @@ public class Minesweeper {
         this.rowsCount = rows;
         this.columnsCount = columns;
         this.bombCount = bombCount;
-        this.cells = new Cells(this.bombCount,this.columnsCount, this.rowsCount);
+        this.cells = new Cells(this.bombCount, this.columnsCount, this.rowsCount);
     }
 
     /**
@@ -29,7 +29,7 @@ public class Minesweeper {
      * @return field type
      */
     public int getField(int x, int y) {
-        return this.cells.getCellState(x,y);
+        return this.cells.getCellState(x, y);
     }
 
     /**
@@ -43,14 +43,14 @@ public class Minesweeper {
      * @param y Y
      */
     public void toggleFieldState(int x, int y) {
-        int cellState = cells.getCellState(x,y);
+        int cellState = cells.getCellState(x, y);
 
         if (cellState == 0) {
-            cells.setCellState(x,y,2);
+            cells.setCellState(x, y, 2);
         } else if (cellState == 2) {
-            cells.setCellState(x,y,3);
+            cells.setCellState(x, y, 3);
         } else if (cellState == 3) {
-            cells.setCellState(x,y,0);
+            cells.setCellState(x, y, 0);
         }
     }
 
@@ -63,10 +63,10 @@ public class Minesweeper {
     public void reveal(int x, int y) {
         this.x = x;
         this.y = y;
-        if (isBombOnPosition(x,y)) loser = true;
-        int cellState = cells.getCellState(x,y);
+        if (isBombOnPosition(x, y)) loser = true;
+        int cellState = cells.getCellState(x, y);
         if (cellState == 0) {
-            cells.setCellState(x,y,1);
+            cells.setCellState(x, y, 1);
         }
     }
 
@@ -78,7 +78,75 @@ public class Minesweeper {
      * @return number of adjacent bombs
      */
     public int getAdjacentBombCount(int x, int y) {
-        return 0;
+        int adjacentBombCount = 0;
+
+        try {
+            if (cells.getIsMine(x - 1, y)) {
+                adjacentBombCount++;
+                //left
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (cells.getIsMine(x + 1, y)) {
+                adjacentBombCount++;
+                //right
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (cells.getIsMine(x, y + 1)) {
+                adjacentBombCount++;
+                //top
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (cells.getIsMine(x, y - 1)) {
+                adjacentBombCount++;
+                //down
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (cells.getIsMine(x - 1, y - 1)) {
+                adjacentBombCount++;
+                //left down
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (cells.getIsMine(x - 1, y + 1)) {
+                adjacentBombCount++;
+                //left top
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (cells.getIsMine(x + 1, y - 1)) {
+                adjacentBombCount++;
+                //right bottom
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (cells.getIsMine(x + 1, y + 1)) {
+                adjacentBombCount++;
+                //right top
+            }
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+        return adjacentBombCount;
     }
 
     /**
