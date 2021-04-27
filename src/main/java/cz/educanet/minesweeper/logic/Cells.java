@@ -57,4 +57,13 @@ public class Cells {
         this.cells[i][j].setIsMine(true);
     }
 
+    public int getAmountOfFlags() {
+        int amount = 0;
+        for (Cell[] cells : cells) {
+            for (Cell cell : cells) {
+                if (cell.getCellState() == 2) amount++;
+            }
+        }
+        return amount;
+    }
 }

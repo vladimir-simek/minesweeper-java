@@ -7,6 +7,7 @@ public class Minesweeper {
     private Cells cells;
     private final int bombCount;
     private boolean loser = false;
+    private boolean winner = false;
 
     private int x;
     private int y;
@@ -61,12 +62,23 @@ public class Minesweeper {
      * @param y Y
      */
     public void reveal(int x, int y) {
-        this.x = x;
-        this.y = y;
+        if (cells.getCellState(x,y) == 2) return;
         if (isBombOnPosition(x, y)) loser = true;
-        int cellState = cells.getCellState(x, y);
-        if (cellState == 0) {
+        else {
             cells.setCellState(x, y, 1);
+            if (getAdjacentBombCount(x, y) == 0) {
+                for (int i = -1; i < 2; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        int xb = x + i;
+                        int yb = y + j;
+                        if (!(xb <= -1 || yb <= -1 || xb > getColumns() - 1 || yb > getRows()-1)) {
+                            if (cells.getCellState(xb,yb) != 1 && !cells.getIsMine(xb,yb)) {
+                                reveal(xb,yb);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -77,6 +89,7 @@ public class Minesweeper {
      * @param y Y
      * @return number of adjacent bombs
      */
+    //done
     public int getAdjacentBombCount(int x, int y) {
         int adjacentBombCount = 0;
 
@@ -156,6 +169,7 @@ public class Minesweeper {
      * @param y Y
      * @return true if bomb on position
      */
+    //done
     public boolean isBombOnPosition(int x, int y) {
         return cells.getIsMine(x, y);
     }
@@ -165,6 +179,7 @@ public class Minesweeper {
      *
      * @return bomb count
      */
+    //done
     public int getBombCount() {
         return this.bombCount;
     }
@@ -174,8 +189,9 @@ public class Minesweeper {
      *
      * @return remaining bomb count
      */
+    //done
     public int getRemainingBombCount() {
-        return 0;
+        return cells.getAmountOfMines() - cells.getAmountOfFlags();
     }
 
     /**
@@ -183,8 +199,9 @@ public class Minesweeper {
      *
      * @return if player won
      */
+    //done
     public boolean didWin() {
-        return false;
+        return winner;
     }
 
     /**
@@ -192,14 +209,17 @@ public class Minesweeper {
      *
      * @return if player lost
      */
+    //done
     public boolean didLoose() {
         return this.loser;
     }
 
+    //done
     public int getRows() {
         return rowsCount;
     }
 
+    //done
     public int getColumns() {
         return columnsCount;
     }
