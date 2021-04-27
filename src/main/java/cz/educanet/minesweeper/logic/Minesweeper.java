@@ -11,7 +11,7 @@ public class Minesweeper {
 
     private int x;
     private int y;
-
+    //done
     public Minesweeper(int rows, int columns, int bombCount) {
         this.rowsCount = rows;
         this.columnsCount = columns;
@@ -29,6 +29,7 @@ public class Minesweeper {
      * @param y Y
      * @return field type
      */
+    //done
     public int getField(int x, int y) {
         return this.cells.getCellState(x, y);
     }
@@ -43,6 +44,7 @@ public class Minesweeper {
      * @param x X
      * @param y Y
      */
+    //done
     public void toggleFieldState(int x, int y) {
         int cellState = cells.getCellState(x, y);
 
@@ -61,11 +63,12 @@ public class Minesweeper {
      * @param x X
      * @param y Y
      */
+    //done
     public void reveal(int x, int y) {
         if (cells.getCellState(x,y) == 2) return;
         if (isBombOnPosition(x, y)) loser = true;
         else {
-            cells.setCellState(x, y, 1);
+            cells.setCellState(x, y, 1 "");
             if (getAdjacentBombCount(x, y) == 0) {
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
