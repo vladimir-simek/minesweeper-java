@@ -68,7 +68,7 @@ public class Minesweeper {
         if (cells.getCellState(x,y) == 2) return;
         if (isBombOnPosition(x, y)) loser = true;
         else {
-            cells.setCellState(x, y, 1 "");
+            cells.setCellState(x, y, 1);
             if (getAdjacentBombCount(x, y) == 0) {
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
@@ -102,7 +102,7 @@ public class Minesweeper {
                 //left
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");
         }
 
         try {
@@ -111,7 +111,7 @@ public class Minesweeper {
                 //right
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
         try {
             if (cells.getIsMine(x, y + 1)) {
@@ -119,7 +119,7 @@ public class Minesweeper {
                 //top
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
         try {
             if (cells.getIsMine(x, y - 1)) {
@@ -127,7 +127,7 @@ public class Minesweeper {
                 //down
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
         try {
             if (cells.getIsMine(x - 1, y - 1)) {
@@ -135,7 +135,7 @@ public class Minesweeper {
                 //left down
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
         try {
             if (cells.getIsMine(x - 1, y + 1)) {
@@ -143,7 +143,7 @@ public class Minesweeper {
                 //left top
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
         try {
             if (cells.getIsMine(x + 1, y - 1)) {
@@ -151,7 +151,7 @@ public class Minesweeper {
                 //right bottom
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
         try {
             if (cells.getIsMine(x + 1, y + 1)) {
@@ -159,7 +159,7 @@ public class Minesweeper {
                 //right top
             }
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Index out of bound pico!!!!!!!!");;
         }
 
         return adjacentBombCount;
